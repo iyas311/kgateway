@@ -1,0 +1,50 @@
+apiVersion:  apps/v1
+kind: Deployment
+metadata:
+  name:  trans-deployment
+  namespace:  iyas-ns
+  labels:
+    app:  trans-deployment
+spec:
+  replicas:  3
+  strategy:
+    type:  RollingUpdate
+    rollingUpdate:
+      maxSurge:  25%
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app:  trans-app
+  template:
+    metadata:
+      labels:
+        app:  trans-app
+    spec:
+      containers:
+        - name: trans-container
+          image:  muralisocial123/transaction-app:v1.0.0
+          ports:
+            - containerPort:  3000
+          resources:
+            requests:
+              cpu:  "100m"
+              memory:  "128Mi"
+            limits:
+              cpu:  "350m"
+              memory:  "256Mi"
+---
+apiVersion:  v1
+kind:  Service
+metadata:
+   name:  trans-service
+   namespace:  iyas-ns
+spec:
+  selector:
+    app: trans-app
+  ports:
+    - port: 3000
+      targetPort: 3000
+  type:  ClusterIP
+          
+          
+    

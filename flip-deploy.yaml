@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flipkart-deployment
+  namespace: iyas-ns
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: flipkart-app
+  template:
+    metadata:
+      labels:
+        app: flipkart-app
+    spec:
+      containers:
+        - name: flipkart-container
+          image: muralisocial123/flipkart-clone-kuberox:v1.1.0
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "350m"
+              memory: "256Mi"
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flipkart-service
+  namespace: iyas-ns
+spec:
+  selector:
+    app: flipkart-app
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP

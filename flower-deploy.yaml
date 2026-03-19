@@ -1,0 +1,46 @@
+apiVersion:  apps/v1
+kind:  Deployment
+metadata:  
+  name:  flower-deployment
+  namespace:  iyas-ns
+spec:
+  replicas:  3
+  strategy:
+    type:  RollingUpdate
+    rollingUpdate:
+      maxSurge:  25%
+      maxUnavailable:  25%
+  selector:
+    matchLabels:
+      app:  flower-app
+  template:
+    metadata:
+      labels:
+        app:  flower-app
+    spec:
+      containers:
+        - name: flower-container
+          image:  muralisocial123/kyndrl-flower-app:v1.1.0
+          ports:
+            - containerPort:  3015
+          resources:
+            requests:
+              cpu:  "100m"
+              memory:  "128Mi"
+            limits:
+              cpu:  "350m"
+              memory:  "256Mi"
+---
+apiVersion:  v1
+kind:  Service
+metadata:
+  name:  flower-service
+  namespace:  iyas-ns
+spec:
+  selector:
+    app:  flower-app
+  ports:
+    - port:  3015
+      targetPort:  3015
+  type:  ClusterIP
+  

@@ -12,5 +12,5 @@ spec:
         type: PathPrefix
         value: /
     backendRefs:
-    - name: flipkart-service   # ✅ USE THIS
-      port: 80                 # ✅ SAFE PORT
+    - name: flipkart-service   
+      port: 80                 

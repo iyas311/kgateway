@@ -7,6 +7,8 @@ spec:
   - name: iyas-gateway
 
   rules:
+
+  # 🔹 FITNESS
   - matches:
     - path:
         type: PathPrefix
@@ -21,20 +23,7 @@ spec:
     - name: fitness-tracker-service
       port: 80
 
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /
-    filters:
-    - type: URLRewrite
-      urlRewrite:
-        path:
-          type: ReplacePrefixMatch
-          replacePrefixMatch: /
-    backendRefs:
-    - name: hospital-service
-      port: 80
-      
+  # 🔹 RETAIL
   - matches:
     - path:
         type: PathPrefix
@@ -44,7 +33,12 @@ spec:
       urlRewrite:
         path:
           type: ReplacePrefixMatch
-          replacePrefixMatch: /retail
+          replacePrefixMatch: /
     backendRefs:
     - name: capsule-service
-      port: 80   
+      port: 80
+
+  # 🔹 DEFAULT (hospital)
+  - backendRefs:
+    - name: hospital-service
+      port: 80

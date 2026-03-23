@@ -4,13 +4,9 @@ metadata:
   name: fitness-route
 spec:
   parentRefs:
-  - name: iyas-gateway   # must match your Gateway name
+  - name: iyas-gateway
 
   rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /fitness
-    backendRefs:
+  - backendRefs:
     - name: fitness-tracker-service
       port: 80

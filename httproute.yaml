@@ -1,16 +1,16 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: iyas-route
-  namespace: iyas-ns
+  name: fitness-route
 spec:
   parentRefs:
-  - name: iyas-gateway
+  - name: iyas-gateway   # must match your Gateway name
+
   rules:
   - matches:
     - path:
         type: PathPrefix
-        value: /
+        value: /fitness
     backendRefs:
-    - name: flipkart-service   
-      port: 80                 
+    - name: fitness-tracker-service
+      port: 80

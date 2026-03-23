@@ -1,14 +1,13 @@
-apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
+apiVersion:  gateway.networking.k8s.io/v1
+kind:  Gateway
 metadata:
-  name: iyas-gateway
-  namespace: iyas-ns
+  name:  iyas-gateway
 spec:
-  gatewayClassName: kgateway
+  gatewayClassName:  kgateway
   listeners:
-  - name: http
-    protocol: HTTP
-    port: 80
-    allowedRoutes:
-      namespaces:
-        from: Same
+    - name:  http
+      port:  80
+      protocol:  HTTP
+      allowedRoutes:
+          namespaces:
+            from: Same

@@ -12,7 +12,7 @@ spec:
   - matches:
     - path:
         type: PathPrefix
-        value: /fitness
+        value: /
     filters:
     - type: URLRewrite
       urlRewrite:
@@ -23,22 +23,22 @@ spec:
     - name: fitness-tracker-service
       port: 80
 
-  # 🔹 RETAIL
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /retail
-    filters:
-    - type: URLRewrite
-      urlRewrite:
-        path:
-          type: ReplacePrefixMatch
-          replacePrefixMatch: /
-    backendRefs:
-    - name: capsule-service
-      port: 80
+  # # 🔹 RETAIL
+  # - matches:
+  #   - path:
+  #       type: PathPrefix
+  #       value: /retail
+  #   filters:
+  #   - type: URLRewrite
+  #     urlRewrite:
+  #       path:
+  #         type: ReplacePrefixMatch
+  #         replacePrefixMatch: /
+  #   backendRefs:
+  #   - name: capsule-service
+  #     port: 80
 
-  # 🔹 DEFAULT (hospital)
-  - backendRefs:
-    - name: hospital-service
-      port: 80
+  # # 🔹 DEFAULT (hospital)
+  # - backendRefs:
+  #   - name: hospital-service
+  #     port: 80

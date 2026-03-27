@@ -20,7 +20,7 @@ spec:
           type: ReplacePrefixMatch
           replacePrefixMatch: /
     backendRefs:
-    - name: fitness-tracker-service
+    - name: app-service
       port: 80
 
   # # 🔹 RETAIL
